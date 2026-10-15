@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AI Traffic Congestion Dashboard</title>
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.4/dist/leaflet.css" />
+  <style>
+    body { margin: 0; font-family: Arial, sans-serif; display: grid; grid-template-columns: 320px 1fr; height: 100vh; }
+    #sidebar { padding: 16px; border-right: 1px solid #ddd; overflow: auto; }
+    #map { height: 100%; width: 100%; }
+    .field { margin-bottom: 12px; }
+    label { display: block; margin-bottom: 4px; }
+    input, select, button { width: 100%; padding: 8px; box-sizing: border-box; }
+    button { cursor: pointer; }
+    small { color: #666; }
+  </style>
+</head>
+<body>
+  <aside id="sidebar">
+    <h2>Route Planner</h2>
+    <div class="field">
+      <label for="start">Start (lat,lng)</label>
+      <input id="start" value="12.9716,77.5946" />
+    </div>
+    <div class="field">
+      <label for="end">End (lat,lng)</label>
+      <input id="end" value="12.9700,77.6100" />
+    </div>
+    <div class="field">
+      <label for="rain">Rainfall (mm)</label>
+      <input id="rain" type="number" value="0" />
+    </div>
+    <div class="field">
+      <label for="algo">Algorithm</label>
+      <select id="algo">
+        <option value="dijkstra">Dijkstra</option>
+        <option value="astar">A*</option>
+      </select>
+    </div>
+    <button id="routeBtn">Recommend Route</button>
+    <hr />
+    <h3>Congestion Check</h3>
+    <small>Sample segment IDs: A-B, A-D, A-E, B-C, C-D, D-E</small>
+    <div class="field">
+      <label for="segments">Segment IDs (comma-separated)</label>
+      <input id="segments" value="A-B,B-C" />
+    </div>
+    <button id="predictBtn">Predict Congestion</button>
+    <pre id="output"></pre>
+  </aside>
+  <main id="map"></main>
+
+  <script src="https://unpkg.com/leaflet@1.9.4/dist/leaflet.js"></script>
+  <script src="/static/js/main.js"></script>
+</body>
+</html>
